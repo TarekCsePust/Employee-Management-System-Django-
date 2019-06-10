@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+	<br>
+	
+	<h2>About {{employee.name}} </h2>
+  <br>
+  <div class="row">
+    <div class="col-md-offset-4">
+      <img src="{{employee.image.url}}" width="200" height="200">
+      
+    </div>
+    <div class="row">
+      <div class="col-md-offset-4">
+         <h3><b>Name:</b> {{employee.name}}</h3>
+         <h3><b>Post:</b> {{employee.post}}</h3> 
+         <h3><b>Birthdate:</b> {{employee.birthdate}}</h3> 
+         <h3><b>Mobile:</b> {{employee.mobile_no}}</h3>
+         <h3><b>Address:</b> {{employee.address}}</h3>
+         <h3><b>Active Status:</b> {% if employee.active %}Active {% else %} Deactive {% endif %}</h3>   
+      </div>
+      
+    </div>
+    <br>
+    
+  </div>
+  
+            
+ {% endblock %}

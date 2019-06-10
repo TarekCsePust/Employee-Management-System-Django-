@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+	<br>
+	<br>
+	<div class="col-md-offset-4">
+	<h2>Profile Details:</h2>
+	<br>
+	 <h3><b>First name:</b> {{user.first_name}}</h3>
+	 <h3><b>Last name:</b> {{user.last_name}}</h3>
+	 <h3><b>Email address:</b> {{user.email}}</h3>
+	 <h3><b>Username:</b> {{user.username}}</h3>
+	<a href='{% url "account:profile_update" %}' class="btn btn-primary">Update</a>
+	<a href='{% url "account_pass:password_change" %}'>Password Change</a>
+	</div>
+
+{% endblock %}
