@@ -2,13 +2,24 @@ from django.shortcuts import render,redirect,reverse,get_object_or_404,HttpRespo
 from .models import Employee
 from .forms import EmployeeForm
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+ 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 User = get_user_model()
 # Create your views here.
 
 
 def EmployeeList(request):
 	if request.user.is_authenticated:
-		employees = Employee.objects.filter(company=request.user)
+		if 'employee' in cache:
+			employees = cache.get('employee')
+			print("from cache")
+		else:
+			employees = Employee.objects.filter(company=request.user)
+			cache.set('employee',employees,timeout=CACHE_TTL)
+			print("from query set") 
 		print(employees)
 		return render(request,"list.html",{"employees":employees})
 		return HttpResponse(employees)
