@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from .token import activation_token
+from EmployeeManagement.task import send_feedback_email_task
 from django.contrib import messages
 from django.contrib.auth import get_user_model,authenticate,login,logout
 User = get_user_model()
@@ -46,7 +47,8 @@ def Registration(request):
 		to_email = form.cleaned_data.get("email")
 		to_list = [to_email]
 		from_email = settings.EMAIL_HOST_USER
-		send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
+		send_feedback_email_task.delay(mail_subject,message,from_email,to_list)
+		#send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
 		return redirect("account:login")
 		return HttpResponse("<h2>thank you for your registration.A confirmation link was sent to your email</h2>")   
         #return render(request,'register.html',{"form":form})
