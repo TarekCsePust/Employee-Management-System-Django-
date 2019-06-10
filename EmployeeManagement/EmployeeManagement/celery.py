@@ -1,5 +1,5 @@
 from celery import Celery
-
+import os
 # Setting the Default Django settings module
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','EmployeeManagement.settings')
 app=Celery('EmployeeManagement')
