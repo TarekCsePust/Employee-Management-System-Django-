@@ -139,7 +139,7 @@ DEFAULT_ACTIVATION_DAYS = 7
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER='hasantarek12cse@gmail.com'
-EMAIL_HOST_PASSWORD =
+EMAIL_HOST_PASSWORD ='105652@hp'
 EMAIL_PORT = 587
 
 BASE_URL = '127.0.0.1:8000'
@@ -171,11 +171,14 @@ JWT_AUTH = {
 }
 
 
+CELERY_BROKER_URL = 'amqp://localhost'
 # For RabbitMQ
-BROKER_URL = 'amqp://[192.168.56.1]'
-CELERY_RESULT_BACKEND = 'amqp://[192.168.56.1]'
+"""
+BROKER_URL = 'amqp://guest:guest@localhost:15672//'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:15672//'
 # Celery Data Format
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Dhaka'
+"""

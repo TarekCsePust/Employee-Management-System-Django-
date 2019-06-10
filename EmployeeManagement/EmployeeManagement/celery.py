@@ -1,10 +1,10 @@
-from celery import Celery
 import os
-# Setting the Default Django settings module
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','EmployeeManagement.settings')
-app=Celery('EmployeeManagement')
+from celery import Celery
+from django.conf import settings
 
-# Using a String here means the worker will always find the configuration information
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EmployeeManagement.settings')
+
+app = Celery('EmployeeManagement')
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
